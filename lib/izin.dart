@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:dropdownfield/dropdownfield.dart';
 import 'package:flutter/material.dart';
 import 'package:ijin/selesai.dart';
@@ -33,14 +32,18 @@ class _HomePageState extends State<HomePage> {
 
   // List<String> nomor = ["n234", "m123", "1098"];
   List<String> mesinnn = [
-    "CFM",
-    "BUBUT",
-    "ENGRAVE",
-    "LAB",
-    "PLATING",
-    "PROOF",
-    "QA",
-    "WAREHOUSE"
+    // "CFM",
+    // "BUBUT",
+    // "ENGRAVE",
+    // "LAB",
+    // "PLATING",
+    // "PROOF",
+    // "QA",
+    // "WAREHOUSE"
+    "BAGMAKING",
+    "LDPE",
+    "GRAPHIC",
+    "SLITING"
   ];
   List<String> ket = ["SOLAT", "TOILET", "AMBIL BAHAN"];
 

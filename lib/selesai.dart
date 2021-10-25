@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import 'package:ijin/izin.dart';
+import 'package:intl/intl.dart';
 //import 'package:ijin/home.dart';
 
 class Ijin {
@@ -58,18 +59,6 @@ Future<List<Ijin>> getIjins2() async {
   }
 }
 
-// ignore: missing_return
-void putIjins(int id) async {
-  // ignore: unused_local_variable
-  var response = await http.put(
-    Uri.parse('http://192.168.98.95:8000/api/status/$id'),
-    headers: {
-      'Content-type': 'application/json',
-      'Accept': 'application/json',
-    },
-  );
-}
-
 // ignore: must_be_immutable
 class SelesaiPage extends StatefulWidget {
   var nik;
@@ -90,6 +79,10 @@ class _SelesaiPageState extends State<SelesaiPage> {
   Icon _searchIcon = new Icon(Icons.search);
   Widget _appBarTitle = new Text('Search Example');
 
+  String time = "";
+  // String time1 = "";
+  // var waktu;
+
   //   _SearchBarExampleState() {
   //   _filter.addListener(() {
   //     if (_filter.text.isEmpty) {
@@ -104,6 +97,18 @@ class _SelesaiPageState extends State<SelesaiPage> {
   //     }
   //   });
   // }
+
+  // ignore: missing_return
+  void putIjins(int id) async {
+    // ignore: unused_local_variable
+    var response =
+        await http.put(Uri.parse('http://192.168.98.95:8000/api/status/$id'),
+            headers: {
+              'Content-type': 'application/json',
+              'Accept': 'application/json',
+            },
+            body: json.encode({"waktu_kembali": time}));
+  }
 
   @override
   void initState() {
@@ -190,7 +195,11 @@ class _SelesaiPageState extends State<SelesaiPage> {
                                     color: Colors.brown,
                                   ),
                                   onTap: () {
+                                    var waktu = DateFormat.yMd()
+                                        .add_jm()
+                                        .format(DateTime.now());
                                     setState(() {
+                                      time = waktu;
                                       putIjins(data[index].id);
                                       data.removeAt(index);
                                       _ijins = getIjins2();
